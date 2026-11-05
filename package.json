@@ -1,0 +1,18 @@
+{
+  "name": "ambar-organograma",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Organograma interativo da Âmbar Energia a partir da base de colaboradores - DHO",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "dev": "node --no-warnings --watch server.js",
+    "seed": "node --no-warnings scripts/seed-demo.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organograma · Âmbar Energia</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/organograma.css">
+</head>
+<body class="org">
+
+  <header class="topo">
+    <a class="logo" href="organograma.html" aria-label="Âmbar Energia"><b>Âmbar</b><small>ENERGIA</small></a>
+    <div class="topo-titulo">
+      <small>ORGANOGRAMA · DHO</small>
+      <strong id="topo-info">Carregando…</strong>
+    </div>
+    <div class="topo-usuario">
+      <span class="topo-nome" id="topo-nome"></span>
+      <a class="btn btn-claro btn-sm" id="link-rh" href="admin.html" hidden>Área do RH</a>
+      <button class="btn btn-claro btn-sm" id="sair">Sair</button>
+    </div>
+  </header>
+
+  <div class="ferramentas">
+    <div class="busca-wrap">
+      <input class="campo" id="busca" type="search" placeholder="Buscar pessoa ou função…" autocomplete="off"
+             role="combobox" aria-expanded="false" aria-controls="sugestoes" aria-label="Buscar pessoa ou função">
+      <ul class="sugestoes" id="sugestoes" role="listbox" hidden></ul>
+    </div>
+    <select class="campo" id="filtro-diretoria" aria-label="Diretoria"><option value="">Todas as diretorias</option></select>
+    <span class="chip-foco" id="chip-foco" hidden></span>
+    <div class="grupo-botoes">
+      <button class="btn btn-claro btn-sm" id="eu" hidden title="Mostrar onde você está no organograma">📍 Minha posição</button>
+      <button class="btn btn-claro btn-sm" id="expandir" title="Abre mais um nível de todas as equipes visíveis">＋ Expandir nível</button>
+      <button class="btn btn-claro btn-sm" id="recolher" title="Volta a mostrar só o topo da estrutura">－ Recolher</button>
+    </div>
+    <div class="zoom" role="group" aria-label="Zoom">
+      <button id="zoom-menos" aria-label="Diminuir zoom">−</button>
+      <span id="zoom-valor">100%</span>
+      <button id="zoom-mais" aria-label="Aumentar zoom">+</button>
+      <button id="ajustar" title="Ajustar à tela" aria-label="Ajustar à tela">⤢</button>
+    </div>
+  </div>
+
+  <main class="palco" id="palco" tabindex="0" aria-label="Organograma (arraste para mover, use a roda do mouse para zoom)">
+    <div class="mundo" id="mundo">
+      <svg class="linhas" id="linhas" aria-hidden="true"><path id="caminho"/></svg>
+      <div id="cartoes"></div>
+    </div>
+    <p class="vazio" id="vazio" hidden></p>
+
+    <details class="legenda" id="legenda">
+      <summary>Níveis <span class="bolinhas" id="bolinhas-niveis"></span></summary>
+      <ul id="lista-niveis"></ul>
+    </details>
+  </main>
+
+  <aside class="detalhe" id="detalhe" hidden aria-live="polite"></aside>
+
+  <script src="js/comum.js"></script>
+  <script src="js/organograma.js"></script>
+</body>
+</html>

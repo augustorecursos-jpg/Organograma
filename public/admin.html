@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Área do RH · Organograma Âmbar</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="app">
+
+  <!-- Login do RH -->
+  <div class="login" id="tela-login">
+    <form class="cartao login-cartao" id="form-login">
+      <span class="logo"><b>Âmbar</b><small>ENERGIA</small></span>
+      <h1>Área do RH</h1>
+      <p>Gestão do Organograma · DHO</p>
+      <label for="senha">Senha de administrador</label>
+      <input id="senha" type="password" class="campo" autocomplete="current-password" required>
+      <button class="btn btn-laranja" type="submit">Entrar como Admin</button>
+      <a href="index.html">← Voltar</a>
+    </form>
+  </div>
+
+  <aside class="lateral" id="lateral" hidden>
+    <a class="lateral-marca logo claro" href="organograma.html"><b>Âmbar</b><small>ENERGIA · RH</small></a>
+    <p class="lateral-grupo">ORGANOGRAMA</p>
+    <button class="lateral-item ativo" data-aba="base"><span class="ic">📥</span>Base & tratamento</button>
+    <button class="lateral-item" data-aba="conferencia"><span class="ic">✅</span>Conferência & ajustes<span class="qtd" id="qtd-conferir"></span></button>
+    <a class="lateral-item" href="organograma.html"><span class="ic">🧭</span>Ver organograma</a>
+    <div class="lateral-rodape"><button class="lateral-item" id="sair"><span class="ic">⎋</span>Sair</button></div>
+  </aside>
+
+  <div class="principal" id="principal" hidden>
+    <header class="barra">
+      <button class="btn-menu" id="btn-menu" aria-label="Abrir menu">☰</button>
+      <div class="barra-titulo">
+        <small>ORGANOGRAMA · DHO</small>
+        <strong>Área do RH</strong>
+      </div>
+      <div class="barra-usuario">
+        <a class="btn btn-claro btn-sm" href="organograma.html">Ver organograma</a>
+      </div>
+    </header>
+
+    <main class="conteudo">
+      <section data-painel="base">
+        <h1 class="titulo-pagina">Base do <em>organograma</em></h1>
+
+        <div class="cartao">
+          <h3>📥 Importar planilha <small>· Excel (.xlsx) ou CSV no mesmo formato da base do RH. A importação substitui a base anterior; os ajustes feitos aqui continuam valendo.</small></h3>
+          <div class="importar">
+            <input type="file" id="arquivo" accept=".xlsx,.xls,.csv" class="campo">
+            <button class="btn btn-laranja" id="btn-importar" disabled>Importar e montar organograma</button>
+          </div>
+          <div id="previa"></div>
+          <details class="colunas-ajuda">
+            <summary>Quais colunas são usadas?</summary>
+            <ul>
+              <li><b>CPF</b> e <b>FUNCIONÁRIO</b> – identificação (o CPF é usado só para o acesso, nunca aparece no organograma).</li>
+              <li><b>CPF_Gestor_atualizado</b> e <b>Nome Gestor</b> – quem é o gestor. Gestor que não está na base vira um cartão “fora da base”.</li>
+              <li><b>FUNÇÃO</b>, <b>CARGO</b>, <b>Nível Colaborador</b> e <b>Nível Gestão</b> – nível de N0 (Presidência) a N8.</li>
+              <li><b>Diretoria Dax</b>, <b>SEÇÃO</b>, <b>Setor Dax</b>, <b>FILIAL_FANTASIA</b> e <b>DSITUAÇÃO</b> – áreas e situação.</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="indicadores" id="indicadores"></div>
+
+        <div class="grade-base">
+          <section class="cartao">
+            <h3>🧠 Como o tratamento foi feito</h3>
+            <ul class="regras">
+              <li><b>Nível:</b> vem da coluna <em>Nível Colaborador</em>; sem ela, <em>Nível Gestão + 1</em>; sem as duas, pelo grupo
+                da coluna <em>CARGO</em> (01 Diretores → N1/N2, 04 Gerentes Executivos → N3, 05 Gerentes → N4, 06 Coordenação → N5,
+                07 Supervisores → N6, 08 Especialistas → N7, demais → N8). Gestor fora da base fica um nível acima do subordinado
+                mais alto; quem fica em <b>N0</b> é a <b>Presidência</b>.</li>
+              <li><b>Diretoria em branco:</b> a mais comum entre as pessoas da mesma <em>seção e filial</em>; sem referência,
+                a mais comum da mesma <em>seção</em>; sem referência, a diretoria do <em>gestor</em>.</li>
+              <li><b>Duplicados:</b> o mesmo CPF em mais de uma coligada vira um só cartão.</li>
+            </ul>
+          </section>
+          <section class="cartao">
+            <h3>🕘 Importações <small id="info-base"></small></h3>
+            <div class="tabela-wrap"><table class="tabela" id="tabela-importacoes"></table></div>
+            <div class="acoes-base">
+              <a class="btn btn-claro btn-sm" href="/api/admin/exportar.csv">⬇ Base tratada (CSV)</a>
+              <a class="btn btn-claro btn-sm" href="/api/admin/backup">⬇ Backup</a>
+            </div>
+          </section>
+        </div>
+
+        <section class="cartao" style="margin-top:1.4rem">
+          <h3>🏷️ Diretorias preenchidas automaticamente <small id="qtd-inferidas"></small></h3>
+          <div class="tabela-wrap"><table class="tabela" id="tabela-inferidas"></table></div>
+        </section>
+      </section>
+
+      <section data-painel="conferencia" hidden>
+        <h1 class="titulo-pagina">Conferência & <em>ajustes</em></h1>
+        <div class="cartao">
+          <div class="cab-tabela">
+            <h3>✅ Pessoas <small id="qtd-lista"></small></h3>
+            <div class="filtros">
+              <select class="campo" id="filtro-motivo" aria-label="Filtrar">
+                <option value="conferir">Só pontos a conferir</option>
+                <option value="">Todas as pessoas</option>
+                <option value="diretoria">Diretoria preenchida automaticamente</option>
+                <option value="nivel_cargo">Nível diferente do cargo</option>
+                <option value="nivel_gestor">Nível igual ou acima do gestor</option>
+                <option value="fora_base">Gestor fora da base</option>
+                <option value="sem_gestor">Sem gestor</option>
+                <option value="ajuste">Com ajuste do RH</option>
+              </select>
+              <select class="campo" id="filtro-dir" aria-label="Diretoria"><option value="">Todas as diretorias</option></select>
+              <input class="campo busca" id="busca" placeholder="Buscar por nome, CPF, função…">
+            </div>
+          </div>
+          <p class="dica">Os ajustes ficam guardados e são aplicados de novo a cada importação da planilha.</p>
+          <div class="tabela-wrap"><table class="tabela" id="tabela-pessoas"></table></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="modal-ajuste">
+    <form method="dialog" id="form-ajuste">
+      <header><h2 id="ajuste-titulo">Ajustar</h2><button type="button" class="fechar" data-fechar aria-label="Fechar">×</button></header>
+      <div class="modal-corpo">
+        <p class="ajuste-sub" id="ajuste-sub"></p>
+        <label>Nível <select class="campo" name="nivel" id="ajuste-nivel"></select></label>
+        <label>Diretoria <input class="campo" name="diretoria" list="lista-diretorias" placeholder="Automático"></label>
+        <label>Função exibida <input class="campo" name="funcao" placeholder="Automático (da planilha)"></label>
+        <label>Gestor <input class="campo" name="gestor" list="lista-gestores" placeholder="Automático (da planilha)"></label>
+        <small class="dica">Deixe em branco para voltar ao valor calculado a partir da planilha.</small>
+      </div>
+      <footer>
+        <button type="button" class="btn btn-claro" data-fechar>Cancelar</button>
+        <button type="submit" class="btn btn-laranja" value="salvar">Salvar ajuste</button>
+      </footer>
+    </form>
+  </dialog>
+  <datalist id="lista-diretorias"></datalist>
+  <datalist id="lista-gestores"></datalist>
+
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/planilha.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

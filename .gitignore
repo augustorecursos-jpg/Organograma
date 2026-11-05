@@ -1,0 +1,7 @@
+node_modules/
+data/
+.env
+# Planilhas com dados reais de colaboradores nunca vão para o repositório (ele é público).
+*.xlsx
+*.xls
+*.csv

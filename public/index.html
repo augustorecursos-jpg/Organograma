@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organograma · Âmbar Energia</title>
+  <meta name="description" content="Organograma da Âmbar Energia · DHO">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <main class="login">
+    <form class="cartao login-cartao" id="form-acesso" novalidate>
+      <span class="logo"><b>Âmbar</b><small>ENERGIA</small></span>
+      <h1>Organograma</h1>
+      <p>Estrutura de lideranças e equipes · DHO</p>
+      <label for="cpf">CPF</label>
+      <input id="cpf" class="campo" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" aria-describedby="acesso-msg">
+      <button class="btn btn-laranja" type="submit">Ver organograma →</button>
+      <p class="acesso-msg" id="acesso-msg" role="alert" aria-live="assertive"></p>
+      <small class="login-nota">Acesso liberado para colaboradores da base do RH.</small>
+      <a href="admin.html">Área do RH</a>
+    </form>
+  </main>
+  <script src="js/comum.js"></script>
+  <script>
+    const campo = document.getElementById('cpf');
+    const msg = document.getElementById('acesso-msg');
+    mascaraCpf(campo);
+    campo.focus();
+    // Já entrou antes? Vai direto para o organograma.
+    api('/api/sessao').then(r => { if (r.ativa) location.replace('organograma.html'); }).catch(() => {});
+    document.getElementById('form-acesso').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+      if (campo.value.replace(/\D/g, '').length < 8) { msg.textContent = 'Informe um CPF válido.'; return; }
+      const btn = e.target.querySelector('button');
+      btn.disabled = true;
+      try {
+        await api('/api/entrar', { method: 'POST', body: { cpf: campo.value } });
+        location.href = 'organograma.html';
+      } catch (err) {
+        msg.textContent = err.message;
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

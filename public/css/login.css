@@ -1,0 +1,15 @@
+.login { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; overflow: hidden; background: var(--fundo); }
+.login::before { content: ''; position: absolute; left: 0; top: 0; width: 340px; height: 180px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 170' preserveAspectRatio='none'%3E%3Cpath d='M0 0H300C200 8 80 44 0 128Z' fill='%230e3b5c'/%3E%3Cpath d='M0 146C70 60 190 14 320 0' fill='none' stroke='%23ec6b24' stroke-width='3'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+.login::after { content: ''; position: absolute; right: 0; bottom: 0; width: 420px; height: 160px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 150' preserveAspectRatio='none'%3E%3Cpath d='M420 0C300 6 220 100 60 150H100C250 110 320 24 420 18Z' fill='%23ec6b24'/%3E%3Cpath d='M420 18C320 24 250 110 100 150H420Z' fill='%230e3b5c'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+.login-cartao { position: relative; z-index: 1; width: min(400px, 100%); display: grid; gap: .8rem; text-align: center; }
+.login-cartao .logo { margin: 0 auto .4rem; }
+.login-cartao p { margin: 0 0 .6rem; color: var(--texto-suave); }
+.login-cartao label { text-align: left; font-weight: 700; font-size: .85rem; }
+.login-cartao a { color: var(--texto-suave); font-size: .85rem; }
+body { background: var(--fundo); }
+.login-cartao h1 { font-size: 1.6rem; }
+.acesso-msg { min-height: 1.2em; margin: 0 !important; color: var(--vermelho) !important; font-weight: 700; font-size: .88rem; }
+.login-nota { color: var(--texto-suave); font-size: .78rem; }
+.cartao { background: #fff; border-radius: var(--raio); padding: 1.6rem; border: 1px solid var(--linha); box-shadow: var(--sombra); }
