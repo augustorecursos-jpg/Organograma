@@ -4,7 +4,7 @@
 .login::after { content: ''; position: absolute; right: 0; bottom: 0; width: 420px; height: 160px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 150' preserveAspectRatio='none'%3E%3Cpath d='M420 0C300 6 220 100 60 150H100C250 110 320 24 420 18Z' fill='%23ec6b24'/%3E%3Cpath d='M420 18C320 24 250 110 100 150H420Z' fill='%230e3b5c'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
 .login-cartao { position: relative; z-index: 1; width: min(400px, 100%); display: grid; gap: .8rem; text-align: center; }
-.login-cartao .logo { margin: 0 auto .4rem; }
+.login-cartao .marca-org { margin: 0 auto .4rem; }
 .login-cartao p { margin: 0 0 .6rem; color: var(--texto-suave); }
 .login-cartao label { text-align: left; font-weight: 700; font-size: .85rem; }
 .login-cartao a { color: var(--texto-suave); font-size: .85rem; }

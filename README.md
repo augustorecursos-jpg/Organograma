@@ -40,7 +40,8 @@ Custo aproximado: Starter (US$ 7/mês) + disco de 1 GB (US$ 0,25/mês). Também 
 
 ## Páginas
 
-- **`/`** – entrada por CPF. CPF fora da base → *“Acesso negado. Procure o time de DHO.”*
+- **`/`** – home com a marca do Organograma, ilustração, números gerais da estrutura (sem nomes) e acesso por CPF.
+  CPF fora da base → *“Acesso negado. Procure o time de DHO.”*
 - **`/organograma.html`** – o organograma:
   - cartões no estilo do Power BI (faixa colorida pelo nível com o setor, nome, nível e função);
   - clique no número embaixo do cartão para abrir/fechar a equipe; quem não tem equipe aparece em duas colunas

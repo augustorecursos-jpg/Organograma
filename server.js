@@ -169,6 +169,20 @@ app.post('/api/sair', (_req, res) => {
   res.json({ ok: true });
 });
 
+/** Números gerais para a página de entrada (sem nomes nem CPFs). */
+app.get('/api/publico/resumo', (_req, res) => {
+  const o = organograma();
+  const pessoas = o.nos.filter(n => !n.virtual);
+  const gestores = new Set(o.nos.map(n => n.gestor).filter(Boolean));
+  res.json({
+    colaboradores: pessoas.length,
+    diretorias: o.resumo.diretorias.filter(d => d !== 'Presidência' && d !== 'Não identificada').length,
+    liderancas: pessoas.filter(n => gestores.has(n.id)).length,
+    filiais: new Set(pessoas.map(n => n.filial).filter(Boolean)).size,
+    importado_em: o.importado_em,
+  });
+});
+
 /** Usada pela página de entrada: já tem sessão válida? (responde 200 sempre, para não gerar erro no console) */
 app.get('/api/sessao', (req, res) => {
   const s = verificar(lerCookies(req).sess_colab);

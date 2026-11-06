@@ -74,3 +74,12 @@ input, select, textarea { font: inherit; }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.erro { background: var(--vermelho); }
+
+/* Marca do Organograma: ícone de estrutura + nome (diferente do logotipo da Trilha) */
+.marca-org { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
+.marca-org img { width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; }
+.marca-org span { display: flex; flex-direction: column; line-height: 1; }
+.marca-org b { font-family: var(--fonte-titulo); font-weight: 800; font-size: 1.32rem; color: var(--marinho); letter-spacing: -.02em; }
+.marca-org small { font-family: var(--fonte-titulo); font-weight: 700; font-size: .58rem; letter-spacing: .16em; color: var(--laranja); margin-top: .3rem; }
+.marca-org.claro b { color: #fff; }
+.marca-org.claro img { box-shadow: 0 0 0 1px rgba(255, 255, 255, .25); }

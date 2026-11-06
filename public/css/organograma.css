@@ -135,7 +135,9 @@ body.org { height: 100vh; height: 100dvh; display: flex; flex-direction: column;
 @media (max-width: 560px) {
   .topo { gap: .7rem; }
   .topo-titulo { padding-left: .7rem; }
-  .logo b { font-size: 1.35rem; }
+  .marca-org b { font-size: 1.1rem; }
+  .marca-org small { display: none; }
+  .marca-org img { width: 34px; height: 34px; }
   #filtro-diretoria { flex: 1 1 100%; max-width: none; }
   .busca-wrap { max-width: none; flex-basis: 100%; }
   .grupo-botoes .btn { padding: .4rem .6rem; font-size: .78rem; }

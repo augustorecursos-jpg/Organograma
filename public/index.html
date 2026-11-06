@@ -4,50 +4,86 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Organograma · Âmbar Energia</title>
-  <meta name="description" content="Organograma da Âmbar Energia · DHO">
+  <meta name="description" content="Organograma da Âmbar Energia: encontre pessoas, lideranças e equipes · DHO">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
-<body>
-  <main class="login">
-    <form class="cartao login-cartao" id="form-acesso" novalidate>
-      <span class="logo"><b>Âmbar</b><small>ENERGIA</small></span>
-      <h1>Organograma</h1>
-      <p>Estrutura de lideranças e equipes · DHO</p>
-      <label for="cpf">CPF</label>
-      <input id="cpf" class="campo" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" aria-describedby="acesso-msg">
-      <button class="btn btn-laranja" type="submit">Ver organograma →</button>
-      <p class="acesso-msg" id="acesso-msg" role="alert" aria-live="assertive"></p>
-      <small class="login-nota">Acesso liberado para colaboradores da base do RH.</small>
-      <a href="admin.html">Área do RH</a>
-    </form>
+<body class="home">
+  <main class="home-grade">
+
+    <section class="home-hero" aria-labelledby="titulo">
+      <div class="pontilhado" aria-hidden="true"></div>
+      <svg class="hero-onda" viewBox="0 0 800 160" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120C200 60 420 150 800 40V160H0Z" fill="#164d74"/>
+        <path d="M0 108C210 50 430 140 800 28" fill="none" stroke="#ec6b24" stroke-width="2.5"/>
+      </svg>
+
+      <div class="hero-conteudo">
+        <span class="marca-org claro"><img src="img/marca-organograma.svg" alt="" width="40" height="40"><span><b>Organograma</b><small>ÂMBAR ENERGIA · DHO</small></span></span>
+
+        <div class="hero-texto">
+          <span class="sobretitulo">ESTRUTURA DA ÂMBAR ENERGIA</span>
+          <h1 id="titulo">Toda a Âmbar, <em>em um só mapa.</em></h1>
+          <p>Encontre pessoas, descubra quem lidera cada área e veja onde você está na estrutura da empresa.</p>
+        </div>
+
+        <!-- Ilustração: um pequeno organograma que se desenha sozinho -->
+        <svg class="hero-arte" viewBox="0 0 440 236" role="img" aria-label="Ilustração de um organograma">
+          <g class="ligacoes" fill="none" stroke="#8fb4cf" stroke-width="2" stroke-linecap="round">
+            <path pathLength="1" d="M220 54V78M78 78H362M78 78V96M220 78V96M362 78V96"/>
+            <path pathLength="1" d="M220 140V160M160 160H280M160 160V176M280 160V176"/>
+          </g>
+          <g class="cartao-arte c1"><rect x="168" y="10" width="104" height="44" rx="8" fill="#fff"/><rect x="168" y="10" width="104" height="11" rx="8" fill="#ec6b24"/><rect x="168" y="16" width="104" height="5" fill="#ec6b24"/><rect x="186" y="29" width="68" height="6" rx="3" fill="#0e3b5c"/><rect x="200" y="40" width="40" height="5" rx="2.5" fill="#c9d4dd"/></g>
+          <g class="cartao-arte c2"><rect x="26" y="96" width="104" height="44" rx="8" fill="#fff"/><rect x="26" y="96" width="104" height="11" rx="8" fill="#0898db"/><rect x="26" y="102" width="104" height="5" fill="#0898db"/><rect x="44" y="115" width="68" height="6" rx="3" fill="#0e3b5c"/><rect x="58" y="126" width="40" height="5" rx="2.5" fill="#c9d4dd"/></g>
+          <g class="cartao-arte c3"><rect x="168" y="96" width="104" height="44" rx="8" fill="#fff"/><rect x="168" y="96" width="104" height="11" rx="8" fill="#0898db"/><rect x="168" y="102" width="104" height="5" fill="#0898db"/><rect x="186" y="115" width="68" height="6" rx="3" fill="#0e3b5c"/><rect x="200" y="126" width="40" height="5" rx="2.5" fill="#c9d4dd"/></g>
+          <g class="cartao-arte c4"><rect x="310" y="96" width="104" height="44" rx="8" fill="#fff"/><rect x="310" y="96" width="104" height="11" rx="8" fill="#0898db"/><rect x="310" y="102" width="104" height="5" fill="#0898db"/><rect x="328" y="115" width="68" height="6" rx="3" fill="#0e3b5c"/><rect x="342" y="126" width="40" height="5" rx="2.5" fill="#c9d4dd"/></g>
+          <g class="cartao-arte c5"><rect x="108" y="176" width="104" height="44" rx="8" fill="#fff"/><rect x="108" y="176" width="104" height="11" rx="8" fill="#f89c5f"/><rect x="108" y="182" width="104" height="5" fill="#f89c5f"/><rect x="126" y="195" width="68" height="6" rx="3" fill="#0e3b5c"/><rect x="140" y="206" width="40" height="5" rx="2.5" fill="#c9d4dd"/></g>
+          <g class="cartao-arte c6 voce"><rect class="voce-anel" x="224" y="172" width="112" height="52" rx="11" fill="none" stroke="#ec6b24" stroke-width="2.5"/><rect x="228" y="176" width="104" height="44" rx="8" fill="#fff"/><rect x="228" y="176" width="104" height="11" rx="8" fill="#f89c5f"/><rect x="228" y="182" width="104" height="5" fill="#f89c5f"/><rect x="246" y="195" width="68" height="6" rx="3" fill="#0e3b5c"/><rect x="260" y="206" width="40" height="5" rx="2.5" fill="#c9d4dd"/>
+            <rect x="300" y="166" width="40" height="15" rx="4" fill="#ec6b24"/><text x="320" y="177" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="8.5" font-weight="800" fill="#fff" letter-spacing=".8">VOCÊ</text></g>
+        </svg>
+
+        <dl class="hero-numeros" id="numeros" hidden></dl>
+      </div>
+    </section>
+
+    <section class="home-acesso">
+      <form class="cartao-acesso" id="form-acesso" novalidate>
+        <span class="sobretitulo">ACESSO DO COLABORADOR</span>
+        <h2>Entre no organograma</h2>
+        <p>Informe seu CPF para abrir o organograma direto na sua posição.</p>
+        <label for="cpf">CPF</label>
+        <input id="cpf" class="campo" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" aria-describedby="acesso-msg">
+        <button class="btn btn-laranja" type="submit">Ver organograma <span aria-hidden="true">→</span></button>
+        <p class="acesso-msg" id="acesso-msg" role="alert" aria-live="assertive"></p>
+        <small class="acesso-nota">🔒 O acesso é liberado para colaboradores da base do RH. Seu CPF não aparece no organograma.</small>
+      </form>
+
+      <ul class="recursos">
+        <li><span class="ic" aria-hidden="true">🔎</span><div><strong>Encontre qualquer pessoa</strong><span>Busque por nome ou função e veja gestor, equipe e área.</span></div></li>
+        <li><span class="ic" aria-hidden="true">📍</span><div><strong>Veja onde você está</strong><span>O organograma abre no seu cartão, com seu gestor e seus colegas.</span></div></li>
+        <li><span class="ic" aria-hidden="true">🏢</span><div><strong>Navegue por diretoria</strong><span>Filtre uma área e abra as equipes nível a nível, do N0 ao N8.</span></div></li>
+      </ul>
+
+      <footer class="home-rodape">
+        <div class="marcas" aria-label="Empresas do grupo">
+          <img src="img/marcas/green-cargo.png" alt="Green Cargo" width="170" height="59">
+          <img src="img/marcas/fluxus.png" alt="Fluxus" width="205" height="46">
+          <img src="img/marcas/mgas.png" alt="MGAS" width="163" height="54">
+          <img src="img/marcas/logas.png" alt="Logás" width="206" height="58">
+        </div>
+        <div class="rodape-linha">
+          <span id="atualizado"></span>
+          <a href="admin.html">Área do RH →</a>
+        </div>
+      </footer>
+    </section>
   </main>
+
   <script src="js/comum.js"></script>
-  <script>
-    const campo = document.getElementById('cpf');
-    const msg = document.getElementById('acesso-msg');
-    mascaraCpf(campo);
-    campo.focus();
-    // Já entrou antes? Vai direto para o organograma.
-    api('/api/sessao').then(r => { if (r.ativa) location.replace('organograma.html'); }).catch(() => {});
-    document.getElementById('form-acesso').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.textContent = '';
-      if (campo.value.replace(/\D/g, '').length < 8) { msg.textContent = 'Informe um CPF válido.'; return; }
-      const btn = e.target.querySelector('button');
-      btn.disabled = true;
-      try {
-        await api('/api/entrar', { method: 'POST', body: { cpf: campo.value } });
-        location.href = 'organograma.html';
-      } catch (err) {
-        msg.textContent = err.message;
-        btn.disabled = false;
-      }
-    });
-  </script>
+  <script src="js/home.js"></script>
 </body>
 </html>
