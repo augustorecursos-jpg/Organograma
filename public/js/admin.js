@@ -86,6 +86,11 @@ function desenharResumo() {
       card('📄', fmt(resumo.linhas), 'linhas na última planilha'),
     ].join('');
 
+  const dataBase = importado_em ? new Date(importado_em.replace(' ', 'T') + 'Z').toLocaleDateString('pt-BR') : '';
+  document.getElementById('destaque-titulo').textContent = nos.length ? `${fmt(pessoas)} colaboradores no organograma` : 'Nenhuma base importada';
+  document.getElementById('destaque-sub').textContent = nos.length
+    ? `${arquivo || 'Planilha'} · importada em ${dataBase} · ${fmt(resumo.a_conferir)} ponto(s) para conferir`
+    : 'Envie a planilha abaixo para montar o organograma.';
   document.getElementById('info-base').textContent = importado_em ? `· base atual: ${arquivo || 'planilha'} em ${dataHora(importado_em)}` : '';
   document.getElementById('tabela-importacoes').innerHTML = importacoes.length
     ? `<tr><th>Data</th><th>Arquivo</th><th>Linhas</th><th>Pessoas</th></tr>` + importacoes.map(i =>
@@ -108,8 +113,26 @@ function desenharResumo() {
 }
 
 // ---------- importação ----------
+// Arrastar e soltar a planilha na área tracejada.
+const soltar = document.getElementById('soltar');
+['dragenter', 'dragover'].forEach(ev => soltar.addEventListener(ev, (e) => { e.preventDefault(); soltar.classList.add('sobre'); }));
+['dragleave', 'drop'].forEach(ev => soltar.addEventListener(ev, () => soltar.classList.remove('sobre')));
+soltar.addEventListener('drop', (e) => {
+  e.preventDefault();
+  const input = document.getElementById('arquivo');
+  input.files = e.dataTransfer.files;
+  input.dispatchEvent(new Event('change'));
+});
+
+function estadoSoltar(arq) {
+  soltar.classList.toggle('pronto', Boolean(arq));
+  document.getElementById('soltar-titulo').textContent = arq ? arq.name : 'Arraste a planilha aqui ou clique para escolher';
+  document.getElementById('soltar-sub').textContent = arq ? `${Math.max(1, arq.size / 1024).toLocaleString('pt-BR', { maximumFractionDigits: 0 })} KB · clique para trocar` : 'Excel (.xlsx, .xls) ou CSV';
+}
+
 document.getElementById('arquivo').addEventListener('change', async (e) => {
   const arq = e.target.files[0];
+  estadoSoltar(arq);
   const previa = document.getElementById('previa');
   const btn = document.getElementById('btn-importar');
   adm.linhas = [];
@@ -145,6 +168,7 @@ document.getElementById('btn-importar').addEventListener('click', async (e) => {
       ? `<p class="aviso">${r.ignoradas.length} linha(s) ignorada(s): ${r.ignoradas.slice(0, 8).map(i => `linha ${i.linha} (${esc(i.motivo)})`).join(', ')}${r.ignoradas.length > 8 ? '…' : ''}</p>`
       : '';
     document.getElementById('arquivo').value = '';
+    estadoSoltar(null);
     adm.linhas = [];
     await carregarBase();
   } catch (err) {

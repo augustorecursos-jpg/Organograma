@@ -10,22 +10,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
 <body class="app">
 
-  <!-- Login do RH -->
-  <div class="login" id="tela-login">
-    <form class="cartao login-cartao" id="form-login">
-      <span class="marca-org"><img src="img/marca-organograma.svg" alt="" width="40" height="40"><span><b>Organograma</b><small>ÂMBAR ENERGIA · DHO</small></span></span>
-      <h1>Área do RH</h1>
-      <p>Gestão do Organograma · DHO</p>
-      <label for="senha">Senha de administrador</label>
-      <input id="senha" type="password" class="campo" autocomplete="current-password" required>
-      <button class="btn btn-laranja" type="submit">Entrar como Admin</button>
-      <a href="index.html">← Voltar</a>
-    </form>
+  <!-- Login do RH: mesmo padrão da página de entrada -->
+  <div class="home-grade tela-login" id="tela-login">
+    <section class="home-hero" aria-labelledby="titulo-rh">
+      <div class="pontilhado" aria-hidden="true"></div>
+      <svg class="hero-onda" viewBox="0 0 800 160" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120C200 60 420 150 800 40V160H0Z" fill="#164d74"/>
+        <path d="M0 108C210 50 430 140 800 28" fill="none" stroke="#ec6b24" stroke-width="2.5"/>
+      </svg>
+      <div class="hero-conteudo">
+        <a class="marca-org claro" href="index.html"><img src="img/marca-organograma.svg" alt="" width="40" height="40"><span><b>Organograma</b><small>ÂMBAR ENERGIA · RH</small></span></a>
+        <div class="hero-texto">
+          <span class="sobretitulo">ÁREA DO RH · DHO</span>
+          <h1 id="titulo-rh">A estrutura da Âmbar, <em>sempre atualizada.</em></h1>
+          <p>Importe a base de colaboradores, confira o tratamento automático e ajuste níveis, diretorias e gestores em poucos cliques.</p>
+        </div>
+        <ul class="passos-rh">
+          <li><span>1</span><div><strong>Importe a planilha</strong><small>A mesma base do RH, em Excel ou CSV.</small></div></li>
+          <li><span>2</span><div><strong>Confira o tratamento</strong><small>Níveis N0 a N8, diretorias em branco e gestores fora da base.</small></div></li>
+          <li><span>3</span><div><strong>Ajuste o que precisar</strong><small>Os ajustes valem de novo a cada importação.</small></div></li>
+        </ul>
+      </div>
+    </section>
+    <section class="home-acesso">
+      <form class="cartao-acesso" id="form-login">
+        <span class="sobretitulo">ACESSO RESTRITO</span>
+        <h2>Entrar na Área do RH</h2>
+        <p>Use a senha de administrador do organograma.</p>
+        <label for="senha">Senha de administrador</label>
+        <input id="senha" type="password" class="campo" autocomplete="current-password" required>
+        <button class="btn btn-laranja" type="submit">Entrar <span aria-hidden="true">→</span></button>
+        <small class="acesso-nota">🔒 Por segurança, o acesso é bloqueado por alguns minutos após várias tentativas erradas.</small>
+      </form>
+      <footer class="home-rodape">
+        <div class="rodape-linha"><a href="index.html">← Página de entrada</a><a href="organograma.html">Ver organograma →</a></div>
+      </footer>
+    </section>
   </div>
 
   <aside class="lateral" id="lateral" hidden>
@@ -41,8 +66,8 @@
     <header class="barra">
       <button class="btn-menu" id="btn-menu" aria-label="Abrir menu">☰</button>
       <div class="barra-titulo">
-        <small>ORGANOGRAMA · DHO</small>
-        <strong>Área do RH</strong>
+        <small>ÁREA DO RH</small>
+        <strong>Gestão do organograma</strong>
       </div>
       <div class="barra-usuario">
         <a class="btn btn-claro btn-sm" href="organograma.html">Ver organograma</a>
@@ -51,12 +76,29 @@
 
     <main class="conteudo">
       <section data-painel="base">
-        <h1 class="titulo-pagina">Base do <em>organograma</em></h1>
+        <div class="destaque-base" id="destaque-base">
+          <div class="pontilhado" aria-hidden="true"></div>
+          <div class="destaque-texto">
+            <small>BASE ATUAL</small>
+            <h1 id="destaque-titulo">Nenhuma base importada</h1>
+            <p id="destaque-sub">Envie a planilha abaixo para montar o organograma.</p>
+          </div>
+          <div class="destaque-acoes">
+            <a class="btn btn-laranja btn-sm" href="organograma.html">🧭 Ver organograma</a>
+            <a class="btn btn-claro btn-sm" href="/api/admin/exportar.csv">⬇ Base tratada (CSV)</a>
+            <a class="btn btn-claro btn-sm" href="/api/admin/backup">⬇ Backup</a>
+          </div>
+        </div>
 
         <div class="cartao">
-          <h3>📥 Importar planilha <small>· Excel (.xlsx) ou CSV no mesmo formato da base do RH. A importação substitui a base anterior; os ajustes feitos aqui continuam valendo.</small></h3>
+          <h3>📥 Importar planilha <small>· a importação substitui a base anterior; os ajustes feitos aqui continuam valendo</small></h3>
+          <label class="soltar" id="soltar">
+            <input type="file" id="arquivo" accept=".xlsx,.xls,.csv">
+            <span class="soltar-ic" aria-hidden="true">📄</span>
+            <strong id="soltar-titulo">Arraste a planilha aqui ou clique para escolher</strong>
+            <small id="soltar-sub">Excel (.xlsx, .xls) ou CSV</small>
+          </label>
           <div class="importar">
-            <input type="file" id="arquivo" accept=".xlsx,.xls,.csv" class="campo">
             <button class="btn btn-laranja" id="btn-importar" disabled>Importar e montar organograma</button>
           </div>
           <div id="previa"></div>
@@ -89,10 +131,6 @@
           <section class="cartao">
             <h3>🕘 Importações <small id="info-base"></small></h3>
             <div class="tabela-wrap"><table class="tabela" id="tabela-importacoes"></table></div>
-            <div class="acoes-base">
-              <a class="btn btn-claro btn-sm" href="/api/admin/exportar.csv">⬇ Base tratada (CSV)</a>
-              <a class="btn btn-claro btn-sm" href="/api/admin/backup">⬇ Backup</a>
-            </div>
           </section>
         </div>
 
